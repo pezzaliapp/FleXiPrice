@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FleXiPrice - Calcolatore Prezzi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log("Service Worker registrato"))
+                .catch((error) => console.log("Service Worker fallito:", error));
+        }
+    </script>
+</head>
+<body>
+    <h1>FleXiPrice</h1>
+    <button class="toggle-button" onclick="toggleDarkMode()">🌙 Modalità Notte</button>
+
+    <h2>Calcolo Prezzo Netto</h2>
+    <input type="text" id="price" placeholder="Prezzo Lordo (€)"><br>
+    <input type="text" id="discount" placeholder="Sconto (%)"><br>
+    <input type="text" id="margin" placeholder="Margine (%)"><br>
+    <button onclick="calculateNetPrice()">Calcola Prezzo Netto</button>
+    <div class="result" id="result"></div>
+
+    <h2>Calcolo Inverso (Trova Sconto Necessario con Margine)</h2>
+    <input type="text" id="desiredNetPrice" placeholder="Prezzo Netto Desiderato (€)"><br>
+    <button onclick="calculateInverseWithMargin()">Calcola Sconto Necessario</button>
+    <div class="result" id="inverseResult"></div>
+
+    <h2>Calcolo Inverso (Senza Margine)</h2>
+    <input type="text" id="desiredNetPriceNoMargin" placeholder="Prezzo Netto Desiderato (€)"><br>
+    <button onclick="calculateInverseNoMargin()">Calcola Sconto Diretto</button>
+    <div class="result" id="inverseResultNoMargin"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
